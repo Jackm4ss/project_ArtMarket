@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { ArtworkCard, Container, Eyebrow, Section, cx } from "../design-system/components";
-import { ds } from "../design-system/tokens";
+import { ArtworkCard, Container, Eyebrow, Section, cx, ui } from "../design-system";
 
 const galleryCopy = {
   eyebrow: "Koleksi Pilihan",
@@ -59,10 +58,10 @@ const artworks = [
   },
 ] as const;
 
-export function FeaturedGallerySection() {
+export function KoleksiSection() {
   return (
     <Section id="gallery">
-      <Container>
+      <Container data-nav-anchor>
         <div className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between">
           <div>
             <Eyebrow className="mb-4">{galleryCopy.eyebrow}</Eyebrow>
@@ -73,7 +72,7 @@ export function FeaturedGallerySection() {
             href="#"
             className={cx(
               "group mt-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-ink-muted transition-colors hover:text-gold md:mt-0",
-              ds.focus,
+              ui.focus,
             )}
           >
             {galleryCopy.viewAllLabel}

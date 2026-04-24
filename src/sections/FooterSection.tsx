@@ -1,7 +1,6 @@
 import type { SVGProps } from "react";
 import { Facebook, Instagram, Send, Twitter, Youtube } from "lucide-react";
-import { Container, IconButton, cx } from "../design-system/components";
-import { ds } from "../design-system/tokens";
+import { Container, IconButton, cx, ui } from "../design-system";
 
 const footerContent = {
   brand: "Art Market",
@@ -38,7 +37,7 @@ function TikTokIcon(props: SVGProps<SVGSVGElement>) {
 export function FooterSection() {
   return (
     <footer id="footer" className="scroll-mt-28 bg-ink pb-8 pt-20 text-cream">
-      <Container>
+      <Container data-nav-anchor>
         <div className="grid grid-cols-1 gap-12 border-b border-cream/8 pb-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
             <div className="mb-6 flex items-center gap-3">
@@ -63,13 +62,13 @@ export function FooterSection() {
                   placeholder={footerContent.newsletterPlaceholder}
                   className={cx(
                     "newsletter-input min-w-0 flex-1 border border-cream/10 bg-cream/5 px-4 py-3 text-sm text-cream transition-colors placeholder:text-cream/30 focus:border-gold",
-                    ds.focusDark,
+                    ui.focusDark,
                   )}
                 />
                 <button
                   type="button"
                   aria-label={footerContent.newsletterSubmitLabel}
-                  className={cx("flex-shrink-0 bg-gold px-5 py-3 text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-gold-light", ds.focusDark)}
+                  className={cx("flex-shrink-0 bg-gold px-5 py-3 text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-gold-light", ui.focusDark)}
                 >
                   <Send aria-hidden="true" className="h-4 w-4" />
                 </button>
@@ -82,7 +81,7 @@ export function FooterSection() {
               <div className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-cream/60">{column.title}</div>
               <div className="space-y-3">
                 {column.links.map((link) => (
-                  <a key={link} href="#" className={cx("block text-sm text-cream/40 transition-colors hover:text-gold", ds.focusDark)}>
+                  <a key={link} href="#" className={cx("block text-sm text-cream/40 transition-colors hover:text-gold", ui.focusDark)}>
                     {link}
                   </a>
                 ))}
@@ -101,7 +100,7 @@ export function FooterSection() {
             <a
               href="#"
               aria-label="TikTok Art Market"
-              className={cx("inline-flex h-9 w-9 items-center justify-center border border-cream/10 text-cream/40 transition-colors duration-300 hover:border-gold hover:text-gold", ds.focusDark)}
+              className={cx("inline-flex h-9 w-9 items-center justify-center border border-cream/10 text-cream/40 transition-colors duration-300 hover:border-gold hover:text-gold", ui.focusDark)}
             >
               <TikTokIcon aria-hidden="true" className="h-4 w-4" />
             </a>

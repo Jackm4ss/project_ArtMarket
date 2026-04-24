@@ -15,7 +15,7 @@ export type ThemeId = (typeof themes)[keyof typeof themes]["id"];
 
 export const defaultTheme: ThemeId = themes.artMarket.id;
 
-export const ds = {
+export const ui = {
   container: "max-w-[1400px] mx-auto px-8 lg:px-12",
   sectionY: "py-24 lg:py-32",
   sectionYCompact: "py-20 lg:py-24",

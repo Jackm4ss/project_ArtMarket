@@ -1,5 +1,5 @@
 import { HandCoins, Headset, ScanFace } from "lucide-react";
-import { Container, Eyebrow, MediaFrame, Section, cx } from "../design-system/components";
+import { Container, Eyebrow, MediaFrame, Section, cx } from "../design-system";
 
 const aboutCopy = {
   eyebrow: "Tentang Kami",
@@ -37,10 +37,10 @@ const aboutBadges = [
   { icon: Headset, label: "Support 24/7" },
 ] as const;
 
-export function AboutSection() {
+export function TentangSection() {
   return (
     <Section id="about" className="border-b border-ink/5">
-      <Container>
+      <Container data-nav-anchor>
         <div className="grid grid-cols-1 items-center gap-20 lg:grid-cols-2">
           <div className="relative">
             <div className="grid grid-cols-2 gap-4">

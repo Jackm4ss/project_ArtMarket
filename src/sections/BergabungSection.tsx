@@ -1,5 +1,5 @@
 import { Palette, ShoppingBag } from "lucide-react";
-import { Button, Eyebrow, Section } from "../design-system/components";
+import { Button, Eyebrow, Section } from "../design-system";
 
 const ctaContent = {
   eyebrow: "Bergabung Sekarang",
@@ -13,11 +13,11 @@ const ctaContent = {
   ],
 } as const;
 
-export function CtaSection() {
+export function BergabungSection() {
   return (
-    <Section className="relative overflow-hidden">
+    <Section id="cta" className="relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.02] bg-plus-pattern" />
-      <div className="relative z-10 mx-auto max-w-[900px] px-8 text-center lg:px-12">
+      <div data-nav-anchor className="relative z-10 mx-auto max-w-[900px] px-8 text-center lg:px-12">
         <Eyebrow centered className="mb-6">
           {ctaContent.eyebrow}
         </Eyebrow>

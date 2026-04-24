@@ -1,9 +1,9 @@
-export { AboutSection } from "./AboutSection";
-export { CtaSection } from "./CtaSection";
-export { FeaturedGallerySection } from "./FeaturedGallerySection";
+export { BergabungSection } from "./BergabungSection";
 export { FooterSection } from "./FooterSection";
-export { GenresSection } from "./GenresSection";
 export { HeaderSection } from "./HeaderSection";
 export { HeroSection } from "./HeroSection";
+export { KategoriSection } from "./KategoriSection";
+export { KoleksiSection } from "./KoleksiSection";
+export { ManfaatSection } from "./ManfaatSection";
 export { MarqueeSection } from "./MarqueeSection";
-export { ValuePropositionSection } from "./ValuePropositionSection";
+export { TentangSection } from "./TentangSection";

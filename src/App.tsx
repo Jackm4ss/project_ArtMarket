@@ -1,14 +1,14 @@
-import { defaultTheme } from "./design-system/tokens";
+import { defaultTheme } from "./design-system";
 import {
-  AboutSection,
-  CtaSection,
-  FeaturedGallerySection,
+  BergabungSection,
   FooterSection,
-  GenresSection,
   HeaderSection,
   HeroSection,
+  KategoriSection,
+  KoleksiSection,
+  ManfaatSection,
   MarqueeSection,
-  ValuePropositionSection,
+  TentangSection,
 } from "./sections";
 
 export default function App() {
@@ -22,11 +22,11 @@ export default function App() {
       <main id="main-content">
         <HeroSection />
         <MarqueeSection />
-        <GenresSection />
-        <FeaturedGallerySection />
-        <ValuePropositionSection />
-        <AboutSection />
-        <CtaSection />
+        <KategoriSection />
+        <KoleksiSection />
+        <ManfaatSection />
+        <TentangSection />
+        <BergabungSection />
       </main>
       <FooterSection />
     </div>

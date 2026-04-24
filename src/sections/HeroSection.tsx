@@ -1,5 +1,5 @@
 import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
-import { Button, Container, Eyebrow, MediaFrame } from "../design-system/components";
+import { Button, Container, Eyebrow, MediaFrame } from "../design-system";
 
 const heroImages = {
   main: {

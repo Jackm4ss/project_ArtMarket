@@ -1,5 +1,5 @@
 import { BadgeCheck, BarChart3, Brush, Gem, Globe, Lock, Percent, ShieldCheck, Sparkles, Truck } from "lucide-react";
-import { Container, Eyebrow, FeatureItem, Section, cx } from "../design-system/components";
+import { Container, Eyebrow, FeatureItem, Section, cx } from "../design-system";
 
 const valueCopy = {
   eyebrow: "Mengapa Art Market",
@@ -70,12 +70,12 @@ const valueColumns = [
   },
 ] as const;
 
-export function ValuePropositionSection() {
+export function ManfaatSection() {
   return (
     <Section id="value" className="relative overflow-hidden bg-ink text-cream">
       <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full border border-gold/5" />
       <div className="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/2 translate-y-1/2 rounded-full border border-gold/5" />
-      <Container className="relative z-10">
+      <Container data-nav-anchor className="relative z-10">
         <div className="mb-20 text-center">
           <Eyebrow centered className="mb-4">
             {valueCopy.eyebrow}
