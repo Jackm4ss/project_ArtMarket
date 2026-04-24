@@ -15,7 +15,7 @@ npm run build
 ```text
 src/
   App.tsx                      # urutan section halaman
-  sections/*Section.tsx         # layout + copy/data untuk satu section
+  sections/*Section.tsx         # section utama, pakai naming yang mudah dibaca tim
   design-system/index.ts        # public export semua primitive design-system
   design-system/actions/        # Button, IconButton
   design-system/cards/          # ArtworkCard, GenreCard
@@ -33,6 +33,7 @@ public/
 
 - Edit urutan section di `src/App.tsx`.
 - Edit copy, gambar, list, link, dan layout di file `src/sections/*Section.tsx` terkait.
+- Pertahankan naming section yang deskriptif dan singkat, misalnya `KategoriSection.tsx`, `KoleksiSection.tsx`, `ManfaatSection.tsx`, dan `TentangSection.tsx`.
 - Edit gambar kategori di `public/genres`, lalu update path di `src/sections/KategoriSection.tsx` kalau nama file berubah.
 - Edit komponen reusable di folder `src/design-system` sesuai domainnya, misalnya `actions/Button.tsx`, `cards/ArtworkCard.tsx`, atau `media/MediaFrame.tsx`.
 - Edit warna, font, radius, dan shadow global di `src/design-system/theme.css`.
@@ -46,8 +47,10 @@ public/
 
 ## Section Notes
 
+- Urutan section saat ini: `Header`, `Hero`, `Marquee`, `Kategori`, `Koleksi`, `Manfaat`, `Tentang`, `Bergabung`, `Footer`.
 - `KategoriSection` saat ini memakai 5 card kategori: `Lukisan`, `Patung`, `Relief`, `Kerajinan Seni`, dan `Dekorasi Artistik`.
 - Asset kategori berada di `public/genres` agar mudah diganti tanpa build/import asset manual.
+- Navbar header memakai smooth scroll ke section target tanpa menambahkan hash `#...` ke URL.
 
 ## Design System
 
