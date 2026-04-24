@@ -1,0 +1,46 @@
+:root,
+[data-theme="art-market"] {
+  --color-bg: 245 241 237;
+  --color-paper: 255 255 255;
+  --color-surface: 237 232 226;
+  --color-border: 229 223 216;
+  --color-text: 26 26 26;
+  --color-text-soft: 58 58 58;
+  --color-muted: 107 101 96;
+  --color-accent: 212 175 55;
+  --color-accent-strong: 184 150 46;
+  --color-accent-soft: 232 206 122;
+  --color-warm: 139 125 107;
+  --font-display: "Zodiak", Georgia, serif;
+  --font-heading: "Gambetta", Georgia, serif;
+  --font-body: "Satoshi", Helvetica, sans-serif;
+  --radius-base: 0;
+  --radius-card: 1rem;
+  --radius-frame: 1rem;
+  --radius-badge: 0.75rem;
+  --shadow-soft: 0 24px 60px rgb(26 26 26 / 0.09);
+  --shadow-float: 0 18px 45px rgb(26 26 26 / 0.17);
+}
+
+[data-theme="gallery-minimal"] {
+  --color-bg: 247 248 246;
+  --color-paper: 255 255 255;
+  --color-surface: 238 241 237;
+  --color-border: 216 222 215;
+  --color-text: 22 25 23;
+  --color-text-soft: 51 56 53;
+  --color-muted: 91 99 94;
+  --color-accent: 88 124 95;
+  --color-accent-strong: 56 87 63;
+  --color-accent-soft: 181 205 186;
+  --color-warm: 122 130 120;
+  --font-display: "Gambetta", Georgia, serif;
+  --font-heading: "Gambetta", Georgia, serif;
+  --font-body: "Satoshi", Helvetica, sans-serif;
+  --radius-base: 0.25rem;
+  --radius-card: 0.5rem;
+  --radius-frame: 0.75rem;
+  --radius-badge: 0.5rem;
+  --shadow-soft: 0 18px 40px rgb(22 25 23 / 0.07);
+  --shadow-float: 0 16px 36px rgb(22 25 23 / 0.13);
+}

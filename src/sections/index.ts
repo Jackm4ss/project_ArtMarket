@@ -1,0 +1,9 @@
+export { AboutSection } from "./AboutSection";
+export { CtaSection } from "./CtaSection";
+export { FeaturedGallerySection } from "./FeaturedGallerySection";
+export { FooterSection } from "./FooterSection";
+export { GenresSection } from "./GenresSection";
+export { HeaderSection } from "./HeaderSection";
+export { HeroSection } from "./HeroSection";
+export { MarqueeSection } from "./MarqueeSection";
+export { ValuePropositionSection } from "./ValuePropositionSection";
