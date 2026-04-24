@@ -1,3 +1,4 @@
+@import url("https://api.fontshare.com/v2/css?f[]=gambetta@400,500,600,700&f[]=satoshi@300,400,500,600,700&f[]=zodiak@400,500,600,700&display=swap");
 @import "./design-system/theme.css";
 
 @tailwind base;
