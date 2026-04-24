@@ -93,15 +93,14 @@ const defaultGlass = "bg-white/15 border-white/25";
 // ─── Blog Card ────────────────────────────────────────────────────────────────
 
 
-function BlogCard({ post, wide = false }: { post: BlogPost; wide?: boolean }) {
+function BlogCard({ post }: { post: BlogPost }) {
   return (
     <a
       id={`blog-${post.id}`}
       href="#"
       className={cx(
         "group relative flex w-full flex-col justify-end overflow-hidden",
-        "rounded-[var(--radius-card)]",
-        wide ? "min-h-[200px]" : "min-h-[260px]",
+        "rounded-[var(--radius-card)] min-h-[340px]",
         ui.focus,
       )}
     >
@@ -138,9 +137,9 @@ function BlogCard({ post, wide = false }: { post: BlogPost; wide?: boolean }) {
           {post.excerpt}
         </p>
 
-        {/* Footer: author · date · readTime (left) — CTA (right) */}
-        <div className="mt-4 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-1.5 text-[10px] text-white/65">
+        {/* Footer: stacks on mobile, side-by-side on sm+ */}
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+          <div className="flex flex-wrap items-center gap-1 text-[10px] text-white/65">
             <span className="font-semibold text-white/80">{post.author}</span>
             <span>·</span>
             <span>{post.date}</span>
@@ -196,16 +195,11 @@ export function BlogSection() {
           </a>
         </div>
 
-        {/* 2-column grid — last card spans full width when count is odd */}
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-          {posts.map((post, i) => {
-            const isLastOdd = posts.length % 2 !== 0 && i === posts.length - 1;
-            return (
-              <div key={post.id} className={isLastOdd ? "lg:col-span-2" : ""}>
-                <BlogCard post={post} wide={isLastOdd} />
-              </div>
-            );
-          })}
+        {/* 3-col grid: 1 mobile → 2 tablet → 3 desktop */}
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <BlogCard key={post.id} post={post} />
+          ))}
         </div>
       </Container>
     </Section>
