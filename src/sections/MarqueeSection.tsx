@@ -13,10 +13,10 @@ const marqueeItems = [
 
 export function MarqueeSection() {
   return (
-    <div className="overflow-hidden border-y border-ink/8 bg-cream-dark/50 py-4">
+    <div className="overflow-hidden border-y border-ink bg-ink py-4">
       <div className="marquee-track flex w-max whitespace-nowrap">
         {[0, 1].map((track) => (
-          <span key={track} className="mx-4 flex items-center gap-8 text-xs font-medium uppercase tracking-[0.3em] text-ink-muted">
+          <span key={track} className="mx-4 flex items-center gap-8 text-xs font-medium uppercase tracking-[0.3em] text-cream/70">
             {marqueeItems.map((item, index) => (
               <span key={`${track}-${item}-${index}`} className="contents">
                 <span>{item}</span>

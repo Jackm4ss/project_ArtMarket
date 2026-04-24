@@ -1,6 +1,8 @@
 import { Menu, Palette, ShoppingBag, User, X, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { cx, ui } from "../design-system";
+import { useCart } from "../context/CartContext";
 
 // ─── Nav items ────────────────────────────────────────────────────────────────
 
@@ -19,6 +21,9 @@ const navItems = [
 export function HeaderSection() {
   const [scrolled, setScrolled] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { totalItems } = useCart();
 
   // Scroll-aware glassmorphism
   useEffect(() => {
@@ -35,15 +40,27 @@ export function HeaderSection() {
 
   const scrollToSection = (sectionId: string) => {
     setSidebarOpen(false);
-    setTimeout(() => {
-      const section = document.getElementById(sectionId);
-      const header = document.querySelector("header");
-      if (!section) return;
-      const target = section.querySelector<HTMLElement>("[data-nav-anchor]") ?? section;
-      const headerOffset = header instanceof HTMLElement ? header.offsetHeight : 0;
-      const top = window.scrollY + target.getBoundingClientRect().top - headerOffset - 20;
-      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
-    }, 300); // wait for sidebar close animation
+    
+    // If we are not on the home page, navigate to home first, then scroll
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        doScroll(sectionId);
+      }, 500);
+      return;
+    }
+    
+    setTimeout(() => doScroll(sectionId), 300);
+  };
+
+  const doScroll = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    const header = document.querySelector("header");
+    if (!section) return;
+    const target = section.querySelector<HTMLElement>("[data-nav-anchor]") ?? section;
+    const headerOffset = header instanceof HTMLElement ? header.offsetHeight : 0;
+    const top = window.scrollY + target.getBoundingClientRect().top - headerOffset - 20;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
   };
 
   return (
@@ -65,7 +82,10 @@ export function HeaderSection() {
           <button
             id="nav-logo-link"
             type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => {
+              if (location.pathname !== "/") navigate("/");
+              else window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className={cx("group flex items-center gap-3", ui.focus)}
           >
             <img
@@ -97,18 +117,22 @@ export function HeaderSection() {
 
           {/* Desktop actions */}
           <div className="hidden items-center gap-3 lg:flex">
-            <button
+            <Link
+              to="/checkout"
               id="nav-cart-btn"
-              type="button"
               aria-label="Keranjang belanja"
               className="relative inline-flex h-10 w-10 items-center justify-center border border-ink/20 text-ink-muted transition-colors duration-200 hover:border-gold hover:text-gold"
             >
               <ShoppingBag aria-hidden="true" className="h-4 w-4" />
-            </button>
-            <button
+              {totalItems > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[10px] font-bold text-ink">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+            <Link
+              to="/katalog"
               id="nav-buyer-btn"
-              type="button"
-              onClick={() => scrollToSection("gallery")}
               className={cx(
                 "hidden items-center gap-2 border border-ink/20 px-5 py-2.5 text-sm font-medium tracking-wide transition-colors duration-300 hover:border-gold hover:text-gold sm:inline-flex",
                 ui.focus,
@@ -116,7 +140,7 @@ export function HeaderSection() {
             >
               <User aria-hidden="true" className="h-4 w-4" />
               Pembeli
-            </button>
+            </Link>
             <button
               id="nav-seller-btn"
               type="button"
@@ -207,18 +231,24 @@ export function HeaderSection() {
         {/* Sidebar CTA */}
         <div className="flex flex-col gap-3 border-t border-ink/8 p-6">
           <div className="flex gap-3">
-            <button
+            <Link
+              to="/checkout"
+              onClick={() => setSidebarOpen(false)}
               id="mobile-cart-btn"
-              type="button"
               aria-label="Keranjang belanja"
-              className="flex h-12 w-12 flex-shrink-0 items-center justify-center border border-ink/20 text-ink-muted transition-colors duration-200 hover:border-gold hover:text-gold"
+              className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center border border-ink/20 text-ink-muted transition-colors duration-200 hover:border-gold hover:text-gold"
             >
               <ShoppingBag aria-hidden="true" className="h-5 w-5" />
-            </button>
-            <button
+              {totalItems > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[10px] font-bold text-ink">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+            <Link
+              to="/katalog"
+              onClick={() => setSidebarOpen(false)}
               id="mobile-buyer-btn"
-              type="button"
-              onClick={() => scrollToSection("gallery")}
               className={cx(
                 "flex flex-1 items-center justify-center gap-2 border border-ink/20 py-3.5 text-sm font-semibold uppercase tracking-widest text-ink transition-colors hover:border-gold hover:text-gold",
                 ui.focus,
@@ -226,7 +256,7 @@ export function HeaderSection() {
             >
               <User aria-hidden="true" className="h-4 w-4" />
               Pembeli
-            </button>
+            </Link>
           </div>
           <button
             id="mobile-seller-btn"
