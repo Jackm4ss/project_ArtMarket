@@ -1,5 +1,6 @@
 export { BergabungSection } from "./BergabungSection";
 export { BlogSection } from "./BlogSection";
+export { FaqSection } from "./FaqSection";
 export { FooterSection } from "./FooterSection";
 export { HeaderSection } from "./HeaderSection";
 export { HeroSection } from "./HeroSection";
