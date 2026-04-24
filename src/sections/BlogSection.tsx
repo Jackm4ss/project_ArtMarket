@@ -137,17 +137,19 @@ function BlogCard({ post }: { post: BlogPost }) {
           {post.excerpt}
         </p>
 
-        {/* Footer: stacks on mobile, side-by-side on sm+ */}
-        <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-          <div className="flex flex-wrap items-center gap-1 text-[10px] text-white/65">
+        {/* Footer: meta info above, CTA below to prevent cramped wrapping in grid */}
+        <div className="mt-4 flex flex-col items-start gap-3">
+          <div className="flex flex-wrap items-center gap-1.5 text-[10px] text-white/65">
             <span className="font-semibold text-white/80">{post.author}</span>
             <span>·</span>
             <span>{post.date}</span>
             <span>·</span>
-            <Clock aria-hidden="true" className="h-3 w-3" />
-            <span>{post.readTime}</span>
+            <span className="flex items-center gap-1">
+              <Clock aria-hidden="true" className="h-3 w-3" />
+              {post.readTime}
+            </span>
           </div>
-          <div className="inline-flex flex-shrink-0 items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-gold transition-transform duration-300 group-hover:translate-x-1">
+          <div className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-gold transition-transform duration-300 group-hover:translate-x-1">
             Baca Artikel
             <ArrowRight aria-hidden="true" className="h-3 w-3" />
           </div>
