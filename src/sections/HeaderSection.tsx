@@ -1,4 +1,5 @@
-import { Eye, Palette } from "lucide-react";
+import { Palette, ShoppingBag, User } from "lucide-react";
+import { useEffect, useState } from "react";
 import { cx, ui } from "../design-system";
 
 const navItems = [
@@ -10,6 +11,14 @@ const navItems = [
 ] as const;
 
 export function HeaderSection() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     const header = document.querySelector("header");
@@ -26,7 +35,16 @@ export function HeaderSection() {
   };
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-cream-deeper/60 bg-cream">
+    <header
+      className={cx(
+        "fixed left-0 top-0 z-50 w-full transition-all duration-300",
+        scrolled
+          ? // Scrolled: glassmorphism — tinted cream bg + blur + border
+            "border-b border-cream-deeper/40 bg-cream/70 shadow-soft backdrop-blur-md"
+          : // Top: solid original bg
+            "border-b border-cream-deeper/60 bg-cream",
+      )}
+    >
       <nav className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-8 lg:px-12" aria-label="Navigasi utama">
         <button
           id="nav-logo-link"
@@ -34,9 +52,12 @@ export function HeaderSection() {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className={cx("group flex items-center gap-3", ui.focus)}
         >
-          <div className="flex h-9 w-9 items-center justify-center border-2 border-ink transition-colors duration-300 group-hover:border-gold group-hover:bg-gold">
-            <span className="font-display text-sm font-bold tracking-tight transition-colors group-hover:text-ink">A</span>
-          </div>
+          <img
+            src="/logo-artmarket.png"
+            alt=""
+            aria-hidden="true"
+            className="h-9 w-auto object-contain"
+          />
           <span className="font-display text-xl font-semibold tracking-tight">Art Market</span>
         </button>
 
@@ -56,6 +77,14 @@ export function HeaderSection() {
 
         <div className="flex items-center gap-3">
           <button
+            id="nav-cart-btn"
+            type="button"
+            aria-label="Keranjang belanja"
+            className="relative inline-flex h-10 w-10 items-center justify-center border border-ink/20 text-ink-muted transition-colors duration-200 hover:border-gold hover:text-gold"
+          >
+            <ShoppingBag aria-hidden="true" className="h-4 w-4" />
+          </button>
+          <button
             id="nav-buyer-btn"
             type="button"
             onClick={() => scrollToSection("gallery")}
@@ -64,7 +93,7 @@ export function HeaderSection() {
               ui.focus,
             )}
           >
-            <Eye aria-hidden="true" className="h-4 w-4" />
+            <User aria-hidden="true" className="h-4 w-4" />
             Pembeli
           </button>
           <button

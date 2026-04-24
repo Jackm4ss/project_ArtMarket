@@ -1,6 +1,7 @@
 import { defaultTheme } from "./design-system";
 import {
   BergabungSection,
+  BlogSection,
   FooterSection,
   HeaderSection,
   HeroSection,
@@ -26,6 +27,7 @@ export default function App() {
         <KoleksiSection />
         <ManfaatSection />
         <TentangSection />
+        <BlogSection />
         <BergabungSection />
       </main>
       <FooterSection />

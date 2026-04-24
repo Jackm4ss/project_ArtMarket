@@ -41,9 +41,12 @@ export function FooterSection() {
         <div className="grid grid-cols-1 gap-12 border-b border-cream/8 pb-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
             <div className="mb-6 flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center border-2 border-gold">
-                <span className="font-display text-sm font-bold text-gold">A</span>
-              </div>
+              <img
+                src="/logo-artmarket.png"
+                alt=""
+                aria-hidden="true"
+                className="h-10 w-auto object-contain"
+              />
               <span className="font-display text-xl font-semibold tracking-tight">{footerContent.brand}</span>
             </div>
             <p className="mb-8 max-w-xs text-sm leading-relaxed text-cream/40">{footerContent.description}</p>
