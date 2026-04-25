@@ -1,0 +1,58 @@
+import type { Product } from "../context/CartContext";
+
+export const products: Product[] = [
+  {
+    id: "p1",
+    title: "Senja di Borobudur",
+    artist: "Budi Santoso",
+    category: "Lukisan",
+    price: 4500000,
+    image: { src: "https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?q=80&w=600&auto=format&fit=crop", alt: "Lukisan senja di Borobudur", width: 600, height: 800 },
+    description: "Lukisan pemandangan Candi Borobudur saat senja dengan nuansa warna emas dan cokelat yang hangat. Karya ini dibuat menggunakan cat minyak di atas kanvas premium dengan teknik impasto untuk memberikan tekstur.",
+  },
+  {
+    id: "p2",
+    title: "Abstraksi Jakarta",
+    artist: "Dian Pelangi",
+    category: "Seni Digital",
+    price: 1200000,
+    image: { src: "https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=600&auto=format&fit=crop", alt: "Seni digital abstrak kota", width: 600, height: 800 },
+    description: "Interpretasi digital dari hiruk-pikuk ibu kota Jakarta. Menggabungkan elemen geometris dan warna neon untuk menangkap energi kota metropolitan yang tidak pernah tidur.",
+  },
+  {
+    id: "p3",
+    title: "Gadis Bali",
+    artist: "Wayan Suardana",
+    category: "Patung",
+    price: 8500000,
+    image: { src: "https://images.unsplash.com/photo-1582560469781-1965b92a4087?q=80&w=600&auto=format&fit=crop", alt: "Patung kayu gadis bali", width: 600, height: 800 },
+    description: "Patung kayu mahoni ukir tangan yang menggambarkan keanggunan penari Bali. Setiap detail ukiran menunjukkan tingkat keahlian pengrajin tingkat master.",
+  },
+  {
+    id: "p4",
+    title: "Monokrom Hutan",
+    artist: "Reza Fahlevi",
+    category: "Fotografi",
+    price: 900000,
+    image: { src: "https://images.unsplash.com/photo-1606556106606-d5004731d102?q=80&w=600&auto=format&fit=crop", alt: "Fotografi hitam putih hutan", width: 600, height: 800 },
+    description: "Fotografi hitam putih dari hutan hujan tropis Sumatra. Dicetak di atas kertas foto museum grade yang menjamin ketahanan warna hingga puluhan tahun.",
+  },
+  {
+    id: "p5",
+    title: "Tari Kecak",
+    artist: "Agung Gunawan",
+    category: "Lukisan",
+    price: 5500000,
+    image: { src: "https://images.unsplash.com/photo-1615184697985-c9bde1b07da7?q=80&w=600&auto=format&fit=crop", alt: "Lukisan tari kecak", width: 600, height: 800 },
+    description: "Lukisan akrilik dinamis yang menangkap pergerakan dan energi mistis dari Tari Kecak Bali. Penggunaan warna-warna kontras tinggi menciptakan efek visual yang mencolok.",
+  },
+  {
+    id: "p6",
+    title: "Vas Keramik Abstrak",
+    artist: "Lina Marlina",
+    category: "Kerajinan seni",
+    price: 2100000,
+    image: { src: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=600&auto=format&fit=crop", alt: "Vas keramik", width: 600, height: 800 },
+    description: "Vas keramik buatan tangan dengan glasir eksperimental yang menghasilkan tekstur dan warna tak terduga. Setiap vas adalah karya unik yang tidak dapat direplikasi persis.",
+  },
+];
