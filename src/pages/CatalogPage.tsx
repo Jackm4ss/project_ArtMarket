@@ -312,19 +312,25 @@ export function CatalogPage() {
                   </button>
                 </div>
 
-                {/* Search */}
-                <div className="relative w-full lg:max-w-sm lg:self-end">
-                  <input
-                    type="text"
-                    placeholder="Cari karya atau seniman..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className={cx(
-                      "w-full rounded-[var(--radius-base)] border border-ink/20 bg-transparent py-3 pl-10 pr-4 text-sm text-ink placeholder:text-ink-muted transition-colors hover:border-ink/40 focus:border-gold",
-                      ui.focus
-                    )}
-                  />
-                  <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-muted" />
+                {/* Count & Search Row */}
+                <div className="flex flex-col-reverse gap-4 md:flex-row md:items-end md:justify-between">
+                  <p className="text-sm font-medium text-ink-muted">
+                    Menampilkan <span className="font-bold text-ink">{filteredProducts.length}</span> dari <span className="font-bold text-ink">{products.length}</span> karya
+                  </p>
+
+                  <div className="relative w-full md:max-w-sm">
+                    <input
+                      type="text"
+                      placeholder="Cari karya atau seniman..."
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      className={cx(
+                        "w-full rounded-[var(--radius-base)] border border-ink/20 bg-transparent py-3 pl-10 pr-4 text-sm text-ink placeholder:text-ink-muted transition-colors hover:border-ink/40 focus:border-gold",
+                        ui.focus
+                      )}
+                    />
+                    <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-muted" />
+                  </div>
                 </div>
               </div>
 
