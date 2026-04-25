@@ -340,7 +340,7 @@ Viewport wajib: desktop 1440px, tablet 768px, mobile 390px.
 | CHAT-003 | Yes | Critical | User kirim pesan | Message tersimpan database, status sent | Belum Diuji |  |  |  |
 | CHAT-004 | Yes | Critical | Seller balas pesan | User melihat pesan di inbox/conversation | Belum Diuji |  |  |  |
 | CHAT-005 | Yes | High | Cek unread count user/seller | Count naik/turun saat message dibaca | Belum Diuji |  |  |  |
-| CHAT-006 | Yes | High | Dari UI chat participant, buka DevTools Network dan verifikasi request SSE aktif | Stream aktif atau response valid tanpa fatal error | Belum Diuji |  |  |  |
+| CHAT-006 | Yes | High | Dari UI chat participant, buka DevTools Network dan verifikasi request realtime sesuai `.env` | Default polling aktif; SSE hanya aktif saat `REALTIME_DRIVER=sse`; tidak menahan navigasi halaman | Belum Diuji |  |  |  |
 | CHAT-007 | Yes | High | Pastikan non-participant tidak punya jalur UI ke conversation; direct endpoint boundary diverifikasi automated/HTTP test | Access denied/404 untuk akses non-participant | Belum Diuji |  |  |  |
 | CHAT-008 | Yes | High | Dari UI chat, ganggu SSE/network lalu amati fallback polling di DevTools Network | Polling mengembalikan message terbaru | Belum Diuji |  |  |  |
 | CHAT-009 | Yes | Medium | Pindah halaman/ganti conversation | Stream lama auto-close, tidak banyak connection aktif | Belum Diuji |  |  |  |

@@ -21,6 +21,7 @@ use App\Http\Controllers\Seller\SellerChatController;
 use App\Http\Controllers\Seller\SellerAdController;
 use App\Http\Controllers\Seller\SellerNotificationController;
 use App\Http\Controllers\Seller\SellerOrderController;
+use App\Http\Controllers\Seller\SellerOnboardingController;
 use App\Http\Controllers\Seller\SellerProductController;
 use App\Http\Controllers\Seller\SellerReferralController;
 use App\Http\Controllers\Seller\SellerReportController;
@@ -78,6 +79,11 @@ Route::get('/dashboard', DashboardRedirectController::class)
     ->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function (): void {
+    Route::get('/seller/onboarding', [SellerOnboardingController::class, 'create'])->name('seller.onboarding.create');
+    Route::post('/seller/onboarding', [SellerOnboardingController::class, 'store'])
+        ->middleware('throttle:register')
+        ->name('seller.onboarding.store');
+
     Route::get('/user', UserDashboardController::class)->name('user.dashboard');
     Route::get('/user/orders', [UserOrderController::class, 'index'])->name('user.orders.index');
     Route::get('/user/orders/{order:invoice}', [UserOrderController::class, 'show'])->name('user.orders.show');

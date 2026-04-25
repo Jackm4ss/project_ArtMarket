@@ -1,4 +1,4 @@
-import { Link, useForm } from "@inertiajs/react";
+import { Link, router, useForm } from "@inertiajs/react";
 import { MessageCircle, Send, Store, UserRound } from "lucide-react";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
@@ -45,6 +45,7 @@ type ChatsProps = {
     conversations: ConversationSummary[];
     activeConversation: ConversationSummary | null;
     messages: ChatMessage[];
+    realtimeDriver: string;
     pollingIntervalSeconds: number;
     sseBackoffSeconds: number[];
 };
@@ -77,7 +78,7 @@ const mergeMessages = (current: ChatMessage[], incoming: ChatMessage[]) => {
     return Array.from(merged.values()).sort((a, b) => a.id - b.id);
 };
 
-export default function Chats({ conversations, activeConversation, messages, pollingIntervalSeconds, sseBackoffSeconds }: ChatsProps) {
+export default function Chats({ conversations, activeConversation, messages, realtimeDriver, pollingIntervalSeconds, sseBackoffSeconds }: ChatsProps) {
     const [liveMessages, setLiveMessages] = useState(messages);
     const latestMessageIdRef = useRef(0);
     const activeConversationId = activeConversation?.id ?? null;
@@ -128,6 +129,12 @@ export default function Chats({ conversations, activeConversation, messages, pol
             }
         };
 
+        const stopRealtime = () => {
+            closeStream();
+            clearReconnect();
+            clearPolling();
+        };
+
         const consumePayload = (event: MessageEvent<string>) => {
             const payload = JSON.parse(event.data) as ChatPayload;
 
@@ -169,7 +176,9 @@ export default function Chats({ conversations, activeConversation, messages, pol
                 return;
             }
 
-            if (!("EventSource" in window)) {
+            const shouldUseSse = realtimeDriver === "sse" && "EventSource" in window;
+
+            if (!shouldUseSse) {
                 startPolling();
                 void poll();
                 return;
@@ -189,9 +198,7 @@ export default function Chats({ conversations, activeConversation, messages, pol
 
         const handleVisibility = () => {
             if (document.hidden) {
-                closeStream();
-                clearReconnect();
-                clearPolling();
+                stopRealtime();
                 return;
             }
 
@@ -202,15 +209,15 @@ export default function Chats({ conversations, activeConversation, messages, pol
 
         connect();
         document.addEventListener("visibilitychange", handleVisibility);
+        const removeNavigationListener = router.on("start", stopRealtime);
 
         return () => {
             stopped = true;
-            closeStream();
-            clearReconnect();
-            clearPolling();
+            stopRealtime();
             document.removeEventListener("visibilitychange", handleVisibility);
+            removeNavigationListener();
         };
-    }, [activeConversationId, pollingIntervalSeconds, sseBackoffSeconds]);
+    }, [activeConversationId, pollingIntervalSeconds, realtimeDriver, sseBackoffSeconds]);
 
     const submit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();

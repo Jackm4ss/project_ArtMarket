@@ -66,6 +66,7 @@ class ChatTest extends TestCase
             ->assertInertia(fn ($page) => $page
                 ->component('User/Chats')
                 ->where('activeConversation.id', $conversation->id)
+                ->where('realtimeDriver', 'polling')
                 ->where('messages.0.body', 'Halo, karya ini masih tersedia.')
             );
 

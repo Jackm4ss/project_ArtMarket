@@ -36,9 +36,26 @@ class ProductController extends Controller
             ->limit(6)
             ->get();
 
+        $serializedProduct = $cart->serializeProduct($product);
+        $galleryImages = $product->media
+            ->map(fn ($media): array => [
+                'src' => $media->getFullUrl(),
+                'alt' => $product->title,
+                'width' => 900,
+                'height' => 1200,
+            ])
+            ->filter(fn (array $image): bool => filled($image['src']))
+            ->unique('src')
+            ->values();
+
+        if ($galleryImages->isEmpty()) {
+            $galleryImages->push($serializedProduct['image']);
+        }
+
         return Inertia::render('Public/ProductShow', [
             'product' => [
-                ...$cart->serializeProduct($product),
+                ...$serializedProduct,
+                'images' => $galleryImages,
                 'reviews' => $product->reviews->map(fn ($review): array => [
                     'id' => $review->id,
                     'rating' => $review->rating,

@@ -175,8 +175,9 @@ Demo seed:
 
 Database tetap source of truth. Realtime hanya delivery layer.
 
-- Buyer active chat: SSE di `/sse/chats/{conversation}`
-- Fallback chat: polling 10 detik di `/polling/chats/{conversation}`
+- Default local/shared-hosting: `REALTIME_DRIVER=polling` agar chat tidak menahan navigasi pada server satu worker.
+- Buyer active chat: polling 10 detik di `/polling/chats/{conversation}`.
+- Opsional jika hosting mendukung long-running request: set `REALTIME_DRIVER=sse` untuk SSE di `/sse/chats/{conversation}`.
 - Global notification summary: `/sse/notifications` atau `/polling/notifications`
 - Seller/admin dashboard: Livewire `wire:poll` atau manual refresh
 - VPS nanti bisa pindah ke Reverb/WebSocket via `REALTIME_DRIVER`
@@ -185,7 +186,7 @@ Database tetap source of truth. Realtime hanya delivery layer.
 
 Client chat wajib:
 
-- satu stream SSE aktif per tab
+- satu stream SSE aktif per tab jika `REALTIME_DRIVER=sse`
 - auto-close saat pindah halaman, ganti conversation, logout, atau tab hidden terlalu lama
 - reconnect backoff 1s, 2s, 4s, 8s, max 30s
 - pause polling saat tab hidden

@@ -7,12 +7,13 @@ return [
     |--------------------------------------------------------------------------
     |
     | Database rows remain the source of truth. The driver only decides how
-    | clients receive fresh state. Shared hosting starts with SSE/polling,
-    | then VPS can switch to Reverb/WebSocket through REALTIME_DRIVER.
+    | clients receive fresh state. Local and shared-hosting installs default
+    | to polling so long-running SSE requests do not block normal navigation.
+    | Enable SSE/Reverb later through REALTIME_DRIVER when hosting supports it.
     |
     */
 
-    'driver' => env('REALTIME_DRIVER', 'sse'),
+    'driver' => env('REALTIME_DRIVER', 'polling'),
 
     'polling_interval_seconds' => (int) env('REALTIME_POLLING_INTERVAL_SECONDS', 10),
 

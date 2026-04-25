@@ -37,6 +37,7 @@ export type ProductSummary = {
     rating_average?: number;
     rating_count?: number;
     image: CardImage;
+    images?: CardImage[];
     category?: CategorySummary | null;
     seller?: SellerSummary | null;
 };

@@ -19,6 +19,7 @@ class UserChatController extends Controller
             'conversations' => $chat->conversationsForUser($request->user())->values(),
             'activeConversation' => null,
             'messages' => [],
+            'realtimeDriver' => config('realtime.driver'),
             'pollingIntervalSeconds' => config('realtime.polling_interval_seconds'),
             'sseBackoffSeconds' => config('realtime.sse.reconnect_backoff_seconds'),
         ]);
@@ -32,6 +33,7 @@ class UserChatController extends Controller
             'conversations' => $chat->conversationsForUser($request->user())->values(),
             'activeConversation' => $chat->serializeConversation($conversation, $request->user(), 0),
             'messages' => $chat->messagesFor($request->user(), $conversation)->values(),
+            'realtimeDriver' => config('realtime.driver'),
             'pollingIntervalSeconds' => config('realtime.polling_interval_seconds'),
             'sseBackoffSeconds' => config('realtime.sse.reconnect_backoff_seconds'),
         ]);

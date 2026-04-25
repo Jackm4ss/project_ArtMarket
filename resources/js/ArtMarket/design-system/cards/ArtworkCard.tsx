@@ -42,17 +42,28 @@ export function ArtworkCard({
   );
 
   return (
-    <article className="art-card group cursor-pointer">
+    <article
+      className={cx(
+        "art-card group cursor-pointer rounded-[var(--radius-card)] border border-transparent bg-paper/0 p-2",
+        "transition-[background-color,border-color,box-shadow,transform] duration-300 ease-out",
+        "hover:-translate-y-1 hover:border-gold/35 hover:bg-paper hover:shadow-float",
+        "motion-reduce:transition-none motion-reduce:hover:translate-y-0",
+      )}
+    >
       {href ? (
-        <a href={href} aria-label={`Lihat detail ${title}`} className={cx("relative block aspect-[3/4] overflow-hidden bg-cream-dark", ui.focus)}>
+        <a
+          href={href}
+          aria-label={`Lihat detail ${title}`}
+          className={cx("relative block aspect-[3/4] overflow-hidden rounded-[var(--radius-frame)] bg-cream-dark", ui.focus)}
+        >
           {imageContent}
         </a>
       ) : (
-        <div className="relative aspect-[3/4] overflow-hidden bg-cream-dark">
+        <div className="relative aspect-[3/4] overflow-hidden rounded-[var(--radius-frame)] bg-cream-dark">
           {imageContent}
         </div>
       )}
-      <div className="pt-5">
+      <div className="px-2 pb-2 pt-5">
         <div className="text-xs font-medium uppercase tracking-[0.15em] text-ink-muted">{artist}</div>
         {href ? (
           <a href={href} className={cx("mt-1 block font-heading text-lg font-medium tracking-tight transition-colors group-hover:text-gold", ui.focus)}>
